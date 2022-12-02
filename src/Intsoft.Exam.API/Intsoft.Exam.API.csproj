@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+		<_Parameter1>Intsoft.Exam.IntegrationTests</_Parameter1>
+	</AssemblyAttribute>
+	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.11" />  
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.11">
 	    <PrivateAssets>all</PrivateAssets>
 		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
