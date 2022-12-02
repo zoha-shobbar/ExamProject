@@ -1,8 +1,8 @@
-﻿using Intsoft.Exam.Application.Contracts.Repositories;
-using Intsoft.Exam.Application.Contracts.Services;
+﻿using Intsoft.Exam.Application.Contracts.Services;
 using Intsoft.Exam.Application.Dtos.Inputs;
 using Intsoft.Exam.Application.Response;
 using Intsoft.Exam.Domain.Entities;
+using Intsoft.Exam.Domain.Repositories;
 
 namespace Intsoft.Exam.Infrastructure.Services
 {

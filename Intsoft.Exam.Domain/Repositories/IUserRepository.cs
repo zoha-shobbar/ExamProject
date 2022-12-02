@@ -1,6 +1,6 @@
 ﻿using Intsoft.Exam.Domain.Entities;
 
-namespace Intsoft.Exam.Application.Contracts.Repositories
+namespace Intsoft.Exam.Domain.Repositories
 {
     public interface IUserRepository
     {

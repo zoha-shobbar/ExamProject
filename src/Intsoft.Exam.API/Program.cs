@@ -1,5 +1,5 @@
-using Intsoft.Exam.Application.Contracts.Repositories;
 using Intsoft.Exam.Application.Contracts.Services;
+using Intsoft.Exam.Domain.Repositories;
 using Intsoft.Exam.Infrastructure.Persistence;
 using Intsoft.Exam.Infrastructure.Repositories;
 using Intsoft.Exam.Infrastructure.Services;

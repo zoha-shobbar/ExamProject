@@ -1,5 +1,5 @@
-﻿using Intsoft.Exam.Application.Contracts.Repositories;
-using Intsoft.Exam.Domain.Entities;
+﻿using Intsoft.Exam.Domain.Entities;
+using Intsoft.Exam.Domain.Repositories;
 using Intsoft.Exam.Infrastructure.Persistence;
 
 namespace Intsoft.Exam.Infrastructure.Repositories
