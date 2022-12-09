@@ -1,0 +1,92 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "ExamProject.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ExamProject.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ExamProject.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ExamProject.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ExamProject.Domain/ExamProject.Domain.csproj",
+      "msbuildProject": "../ExamProject.Domain/ExamProject.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "ExamProject.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\ZohaShobbar\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "E:\\Projects\\stuff\\info\\ExamProject\\ExamProject.Application\\ExamProject.Application.csproj",
+      "projectName": "ExamProject.Application",
+      "projectPath": "E:\\Projects\\stuff\\info\\ExamProject\\ExamProject.Application\\ExamProject.Application.csproj",
+      "packagesPath": "C:\\Users\\ZohaShobbar\\.nuget\\packages\\",
+      "outputPath": "E:\\Projects\\stuff\\info\\ExamProject\\ExamProject.Application\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\ZohaShobbar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "E:\\Projects\\AppstagramPackages": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "E:\\Projects\\stuff\\info\\ExamProject\\ExamProject.Domain\\ExamProject.Domain.csproj": {
+              "projectPath": "E:\\Projects\\stuff\\info\\ExamProject\\ExamProject.Domain\\ExamProject.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
