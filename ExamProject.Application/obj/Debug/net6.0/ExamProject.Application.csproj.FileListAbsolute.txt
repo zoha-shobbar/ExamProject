@@ -1,0 +1,15 @@
+E:\Projects\stuff\ExamProject\ExamProject.Application\bin\Debug\net6.0\ExamProject.Application.deps.json
+E:\Projects\stuff\ExamProject\ExamProject.Application\bin\Debug\net6.0\ExamProject.Application.dll
+E:\Projects\stuff\ExamProject\ExamProject.Application\bin\Debug\net6.0\ref\ExamProject.Application.dll
+E:\Projects\stuff\ExamProject\ExamProject.Application\bin\Debug\net6.0\ExamProject.Application.pdb
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ExamProject.Application.csproj.AssemblyReference.cache
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ExamProject.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ExamProject.Application.AssemblyInfoInputs.cache
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ExamProject.Application.AssemblyInfo.cs
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ExamProject.Application.csproj.CoreCompileInputs.cache
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ExamProject.Application.dll
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ref\ExamProject.Application.dll
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ExamProject.Application.pdb
+E:\Projects\stuff\ExamProject\ExamProject.Application\bin\Debug\net6.0\ExamProject.Domain.dll
+E:\Projects\stuff\ExamProject\ExamProject.Application\bin\Debug\net6.0\ExamProject.Domain.pdb
+E:\Projects\stuff\ExamProject\ExamProject.Application\obj\Debug\net6.0\ExamProject.Application.csproj.CopyComplete
