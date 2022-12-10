@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExamProject.Infrastructure.Persistence
 {
-    public class DataContext : IdentityDbContext<User>
+    public class DataContext : IdentityDbContext<User, Role, Guid>
     {
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)

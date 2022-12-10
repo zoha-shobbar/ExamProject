@@ -2,6 +2,6 @@
 {
     public interface IDataInitializer 
     {
-        void InitializeData();
+        Task InitializeDataAsync();
     }
 }

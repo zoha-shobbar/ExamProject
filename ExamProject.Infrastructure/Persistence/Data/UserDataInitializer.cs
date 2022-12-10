@@ -10,16 +10,30 @@ namespace ExamProject.Infrastructure.Persistence.Data
     {
         private readonly UserManager<User> userManager;
         private readonly IConfiguration configuration;
+        private readonly RoleManager<Role> roleManager;
 
-        public UserDataInitializer(UserManager<User> userManager, IConfiguration configuration)
+        public UserDataInitializer(UserManager<User> userManager,
+                                    IConfiguration configuration,
+                                    RoleManager<Role> roleManager)
         {
             this.userManager = userManager;
             this.configuration=configuration;
+            this.roleManager=roleManager;
         }
 
-        public void InitializeData()
+        public async Task InitializeDataAsync()
         {
-            if (!userManager.Users.AsNoTracking().Any(p => p.UserName == "Admin"))
+            string[] roleNames = { "Admin", "Member" };
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    var roleResult = await roleManager.CreateAsync(new Role { Name= roleName });
+                }
+            }
+
+            if (!userManager.Users.AsNoTracking().Any(p => p.UserName ==  configuration["Admin:UserName"]))
             {
                 var user = new User
                 {
@@ -29,7 +43,14 @@ namespace ExamProject.Infrastructure.Persistence.Data
                     UserName = configuration["Admin:UserName"],
                     Email = configuration["Admin:Email"]
                 };
-                var result = userManager.CreateAsync(user, configuration["Admin:Password"]).GetAwaiter().GetResult();
+                var result = userManager.CreateAsync(user, configuration["Admin:Password"])
+                                .GetAwaiter()
+                                .GetResult();
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "Admin");
+                }
             }
         }
     }
