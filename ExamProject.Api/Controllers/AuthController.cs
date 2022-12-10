@@ -1,8 +1,9 @@
 ﻿using ExamProject.Application.Dtos.OutputDtos;
+using ExamProject.Application.Response;
 using ExamProject.Infrastructure.Identity.Models;
+using ExamProject.Infrastructure.Services;
 using ExamProject.Infrastructure.Services.Jwt;
 using Intsoft.Exam.Application.Dtos.Inputs;
-using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,79 +15,37 @@ namespace ExamProject.Api.Controllers
     [Authorize]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<User> userManager;
-        private readonly RoleManager<Role> roleManager;
-        private readonly SignInManager<User> signInManager;
-        private readonly IJwtService jwtService;
+        private readonly IAuthService service;
 
-        public AuthController(UserManager<User> userManager,
-            RoleManager<Role> roleManager,
-            SignInManager<User> signInManager,
-            IJwtService jwtService)
+        public AuthController(IAuthService service)
         {
-            this.userManager=userManager;
-            this.roleManager=roleManager;
-            this.signInManager=signInManager;
-            this.jwtService=jwtService;
+            this.service=service;
         }
 
         [HttpGet("{id}")]
-        public async Task<User> Get(Guid id, CancellationToken cancellationToken)
+        public async Task<SingleResponse<User>> Get(Guid id, CancellationToken cancellationToken)
         {
-            var user = await userManager.FindByIdAsync(id.ToString());
-            return user;
+            return await service.Get(id, cancellationToken);
         }
 
         [HttpGet]
-        public List<UserDto> Get()
+        public ListResponse<UserDto> Get()
         {
-            var users = userManager.Users
-                            .ToList()
-                            .Select(x => new UserDto
-                            {
-                                Id = x.Id,
-                                FullName = x.FullName,
-                                PhoneNumber = x.PhoneNumber,
-                                Role = string.Join(",", userManager.GetRolesAsync(x).Result.ToArray())
-                            })
-                            .ToList();
-            return users;
+            return service.Get();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Guid> SignUpAsync(UserInput userInput)
+        public async Task<SingleResponse<Guid>> SignUpAsync(UserInput userInput, CancellationToken cancellationToken)
         {
-            var user = new User
-            {
-                FirstName = userInput.FirstName,
-                LastName = userInput.LastName,
-                PhoneNumber = userInput.PhoneNumber,
-                UserName = userInput.UserName,
-                Email = userInput.Email
-            };
-            var result = userManager.CreateAsync(user, userInput.Password)
-                            .GetAwaiter()
-                            .GetResult();
-
-            await userManager.AddToRoleAsync(user, "Member");
-
-            return user.Id;
+            return await service.SignUpAsync(userInput, cancellationToken);
         }
 
         [HttpGet("[action]")]
         [AllowAnonymous]
-        public async Task<AccessToken> SignIn(string userName, string password)
+        public async Task<SingleResponse<AccessToken>> SignIn(string userName, string password, CancellationToken cancellationToken)
         {
-            var result = await signInManager.PasswordSignInAsync(userName, password, false, false);
-
-            if (!result.Succeeded)
-                throw new UnauthorizedAccessException();
-
-            var user = await userManager.FindByNameAsync(userName);
-            var token = await jwtService.GenerateToken(user);
-
-            return token;
+            return await service.SignIn(userName, password, cancellationToken);
         }
 
 

@@ -14,6 +14,6 @@ namespace ExamProject.Infrastructure.Identity.Models
         [IgnoreDataMember]
         public string FullName => $"{FirstName} {LastName}";
 
-        public bool IsArchive { get; set; } = false;
+        public bool IsArchive { get; set; } 
     }
 }

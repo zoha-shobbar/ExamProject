@@ -1,7 +1,11 @@
 using ExamProject.Application.Contracts;
+using ExamProject.Application.Contracts.Services;
+using ExamProject.Domain.Repositories;
 using ExamProject.Infrastructure.Extensions;
 using ExamProject.Infrastructure.Persistence;
 using ExamProject.Infrastructure.Persistence.Data;
+using ExamProject.Infrastructure.Repositories;
+using ExamProject.Infrastructure.Services;
 using ExamProject.Infrastructure.Services.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +54,12 @@ builder.Services.AddCustomIdentity(builder.Configuration);
 
 builder.Services.AddScoped<IDataInitializer, UserDataInitializer>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseService<,>));
+
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 

@@ -23,5 +23,39 @@ namespace ExamProject.Infrastructure.Persistence
             modelBuilder.AddGolobalFilter(entitiesAssembly);
             //modelBuilder.AddPluralizingTableNameConvention();
         }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreationDate = DateTime.UtcNow;
+                        break;
+                    case EntityState.Modified:
+                        entry.Entity.ModificationDate = DateTime.UtcNow;
+                        break;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreationDate = DateTime.UtcNow;
+                        break;
+                    case EntityState.Modified:
+                        entry.Entity.ModificationDate = DateTime.UtcNow;
+                        break;
+                }
+            }
+            return base.SaveChanges();
+        }
     }
 }
