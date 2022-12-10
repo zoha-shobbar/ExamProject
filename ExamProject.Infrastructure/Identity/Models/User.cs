@@ -4,9 +4,9 @@ using System.Runtime.Serialization;
 
 namespace ExamProject.Infrastructure.Identity.Models
 {
-    public class User : IdentityUser, IBaseEntity
+    public class User : IdentityUser<Guid>, IBaseEntity
     {
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsActive { get; set; } = false;
@@ -14,6 +14,6 @@ namespace ExamProject.Infrastructure.Identity.Models
         [IgnoreDataMember]
         public string FullName => $"{FirstName} {LastName}";
 
-        public bool IsArchive { get; set; } = false;
+        public bool IsArchive { get; set; } 
     }
 }

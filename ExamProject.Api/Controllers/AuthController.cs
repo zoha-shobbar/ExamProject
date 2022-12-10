@@ -1,6 +1,10 @@
 ﻿using ExamProject.Application.Dtos.OutputDtos;
+using ExamProject.Application.Response;
 using ExamProject.Infrastructure.Identity.Models;
-using Mapster;
+using ExamProject.Infrastructure.Services;
+using ExamProject.Infrastructure.Services.Jwt;
+using Intsoft.Exam.Application.Dtos.Inputs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,40 +12,42 @@ namespace ExamProject.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<User> userManager;
-        private readonly RoleManager<Role> roleManager;
-        private readonly SignInManager<User> signInManager;
+        private readonly IAuthService service;
 
-        public AuthController(UserManager<User> userManager,
-            RoleManager<Role> roleManager,
-            SignInManager<User> signInManager)
+        public AuthController(IAuthService service)
         {
-            this.userManager=userManager;
-            this.roleManager=roleManager;
-            this.signInManager=signInManager;
+            this.service=service;
         }
 
         [HttpGet("{id}")]
-        public async Task<User> Get(int id, CancellationToken cancellationToken)
+        public async Task<SingleResponse<User>> Get(Guid id, CancellationToken cancellationToken)
         {
-            var user = await userManager.FindByIdAsync(id.ToString());
-            return user;
+            return await service.Get(id, cancellationToken);
         }
 
         [HttpGet]
-        public List<User> Get()
+        public ListResponse<UserDto> Get()
         {
-            //TypeAdapterConfig<User, UserDto>
-            //    .NewConfig()
-            //        .Map(d => d.FullName, s => s.FirstName + " " + s.LastName);
-
-            var users = userManager.Users
-                           // ProjectToType<UserDto>()
-                            .ToList(); ;
-            return users;
+            return service.Get();
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<SingleResponse<Guid>> SignUpAsync(UserInput userInput, CancellationToken cancellationToken)
+        {
+            return await service.SignUpAsync(userInput, cancellationToken);
+        }
+
+        [HttpGet("[action]")]
+        [AllowAnonymous]
+        public async Task<SingleResponse<AccessToken>> SignIn(string userName, string password, CancellationToken cancellationToken)
+        {
+            return await service.SignIn(userName, password, cancellationToken);
+        }
+
 
     }
 }

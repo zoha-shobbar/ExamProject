@@ -20,7 +20,7 @@ namespace ExamProject.Infrastructure.Services.Jwt
         }
         public async Task<AccessToken> GenerateToken(User user)
         {
-            var secretKey = Encoding.UTF8.GetBytes("MySecretKey");
+            var secretKey = Encoding.UTF8.GetBytes(configuration["Jwt:Key"]);
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature);
 
             var claims = (await signInManager.ClaimsFactory.CreateAsync(user)).Claims;
