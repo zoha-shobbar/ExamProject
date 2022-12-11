@@ -9,7 +9,6 @@ namespace ExamProject.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class BookController : BaseController<IBookService, Book, BookInput>
     {
         private readonly IBookService service;

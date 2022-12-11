@@ -48,8 +48,10 @@ namespace ExamProject.Infrastructure.Repositories
             var currentEntity = await dataContext.Set<TEntity>().FindAsync(id);
             if (currentEntity != null)
             {
-                dataContext.Remove(currentEntity);
+                dataContext.Set<TEntity>().Remove(currentEntity);
                 await dataContext.SaveChangesAsync();
+
+                var cursrentEntity = await dataContext.Set<TEntity>().FindAsync(id);
             }
         }
 
